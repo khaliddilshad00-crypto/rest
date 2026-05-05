@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="diffr.css">
+    <title>Fuul Hummus Menu</title>
+</head>
+
+<body>
+
+    <img src="../images/foul-w-hummus.webp" alt="WW Logo" class="image">
+
+    <div class="menu-wrapper">
+        <div class="menu-card">
+            <h1 class="menu-title" data-key="title">فول وحمص - القائمة</h1>
+            <p class="address" data-key="address">📍 أربيل، العراق</p>
+
+            <div class="menu-item">
+                <img src="../images/foul-w-hummus.webp" alt="Fuul" class="item-img">
+                <div class="item-overlay">
+                    <h2 data-key="fuul">FUUL</h2>
+                </div>
+            </div>
+
+            <div class="menu-item">
+                <img src="../images/kahramana.webp" alt="Chicken" class="item-img">
+                <div class="item-overlay">
+                    <h2 data-key="chicken">CHICKEN</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const translations = {
+            ar: {
+                title: "فول وحمص - القائمة",
+                address: "📍 أربيل، العراق",
+                fuul: "فول",
+                chicken: "دجاج"
+            },
+
+            eng:
+            {
+                title: "Fuul & Hummus - Menu",
+                address: "📍 Erbil, Iraq",
+                fuul: "FUUL",
+                chicken: "CHICKEN"
+            },
+            kurdi: {
+                title: "فول و حومس - لیست",
+                address: "📍 هەولێر، عێراق",
+                fuul: "فول",
+                chicken: "مريشک"
+            }
+        };
+
+        window.onload = function () {
+            // Get the saved language from the first page
+            const lang = localStorage.getItem('userLanguage') || 'ar';
+
+            const elements = document.querySelectorAll('[data-key]');
+            elements.forEach(el => {
+                const key = el.getAttribute('data-key');
+                if (translations[lang] && translations[lang][key]) {
+                    el.innerText = translations[lang][key];
+                }
+            });
+
+            // RTL for Arabic/Kurdish
+            document.documentElement.dir = (lang === 'ar' || lang === 'kurdi') ? 'rtl' : 'ltr';
+        };
+    </script>
+</body>
+
+</html>
